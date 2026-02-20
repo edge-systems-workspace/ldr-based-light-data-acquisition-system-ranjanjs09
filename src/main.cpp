@@ -1,44 +1,32 @@
-#include <Arduino.h>
 /**
- * @file main.ino
+* @file main.cpp
  * @brief Embedded Light Intensity Monitoring using LDR
- * @author YOUR_NAME
- * @date YYYY-MM-DD
+ * @author Purendra Ranjan [ranjanjs09]
+ * @date 19-02-2026
  *
  * @details
  * Reads analog brightness data from LDR sensor
  * and displays structured output via Serial Monitor.
  */
 
- // TODO 1:
- // Define LDR analog pin (Use A0)
-
- // TODO 2:
- // Create variable to store sensor reading
+#include <Arduino.h>
+#define LDR_PIN A0
 
 void setup() {
-
-    // TODO 3:
-    // Initialize Serial communication (9600 baud rate)
-
-    // TODO 4:
-    // Print system initialization message
+    // write your initialization code here
+    Serial.begin(9600);
+    while (!Serial); // Important for Uno R4 WiFi
 }
 
 void loop() {
-
-    // TODO 5:
-    // Read analog value from LDR
-
-    // TODO 6:
-    // Print raw ADC value
-
-    // TODO 7:
-    // Apply threshold logic (Bright / Dark detection)
-
-    // TODO 8:
-    // Print brightness status
-
-    // TODO 9:
-    // Add delay (500ms or 1 second)
+    // write your code here
+    int ldrRaw = analogRead(LDR_PIN);
+    // Map to percentage
+    int ligthtPercentage = map(ldrRaw, 0, 1023, 0, 100);
+    Serial.print("LDR Raw: ");
+    Serial.print(ldrRaw);
+    Serial.print(" | Light: ");
+    Serial.print(ligthtPercentage);
+    Serial.println("%");
+    delay(500);
 }
